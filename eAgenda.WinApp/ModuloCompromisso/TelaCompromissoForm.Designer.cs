@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox3 = new TextBox();
+            txtAssunto = new TextBox();
+            txtId = new TextBox();
             label3 = new Label();
             groupBox1 = new GroupBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            txtLocalOnline = new TextBox();
+            txtLocalPresencial = new TextBox();
+            rdbOnline = new RadioButton();
+            rdbPrensencial = new RadioButton();
             label2 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            checkBox1 = new CheckBox();
+            chkContato = new CheckBox();
             label7 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker3 = new DateTimePicker();
-            comboBox1 = new ComboBox();
+            btnGravar = new Button();
+            btnCancelar = new Button();
+            dtpData = new DateTimePicker();
+            dtpHoraInicio = new DateTimePicker();
+            dtpHoraFinal = new DateTimePicker();
+            cmbListaContato = new ComboBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,19 +62,19 @@
             label1.TabIndex = 0;
             label1.Text = "Assunto:";
             // 
-            // textBox1
+            // txtAssunto
             // 
-            textBox1.Location = new Point(122, 56);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(269, 23);
-            textBox1.TabIndex = 1;
+            txtAssunto.Location = new Point(122, 56);
+            txtAssunto.Name = "txtAssunto";
+            txtAssunto.Size = new Size(269, 23);
+            txtAssunto.TabIndex = 1;
             // 
-            // textBox3
+            // txtId
             // 
-            textBox3.Location = new Point(122, 27);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(93, 23);
-            textBox3.TabIndex = 5;
+            txtId.Location = new Point(122, 27);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(93, 23);
+            txtId.TabIndex = 5;
             // 
             // label3
             // 
@@ -88,10 +88,10 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox5);
-            groupBox1.Controls.Add(textBox4);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Controls.Add(txtLocalOnline);
+            groupBox1.Controls.Add(txtLocalPresencial);
+            groupBox1.Controls.Add(rdbOnline);
+            groupBox1.Controls.Add(rdbPrensencial);
             groupBox1.Font = new Font("Segoe UI", 11.25F);
             groupBox1.Location = new Point(52, 177);
             groupBox1.Name = "groupBox1";
@@ -100,43 +100,45 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Local";
             // 
-            // textBox5
+            // txtLocalOnline
             // 
-            textBox5.Location = new Point(115, 70);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(384, 27);
-            textBox5.TabIndex = 3;
+            txtLocalOnline.Location = new Point(115, 70);
+            txtLocalOnline.Name = "txtLocalOnline";
+            txtLocalOnline.Size = new Size(384, 27);
+            txtLocalOnline.TabIndex = 3;
             // 
-            // textBox4
+            // txtLocalPresencial
             // 
-            textBox4.Location = new Point(115, 28);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(384, 27);
-            textBox4.TabIndex = 2;
+            txtLocalPresencial.Location = new Point(115, 28);
+            txtLocalPresencial.Name = "txtLocalPresencial";
+            txtLocalPresencial.Size = new Size(384, 27);
+            txtLocalPresencial.TabIndex = 2;
             // 
-            // radioButton2
+            // rdbOnline
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Segoe UI", 11.25F);
-            radioButton2.Location = new Point(15, 73);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(70, 24);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Online";
-            radioButton2.UseVisualStyleBackColor = true;
+            rdbOnline.AutoSize = true;
+            rdbOnline.Font = new Font("Segoe UI", 11.25F);
+            rdbOnline.Location = new Point(15, 73);
+            rdbOnline.Name = "rdbOnline";
+            rdbOnline.Size = new Size(70, 24);
+            rdbOnline.TabIndex = 1;
+            rdbOnline.TabStop = true;
+            rdbOnline.Text = "Online";
+            rdbOnline.UseVisualStyleBackColor = true;
+            rdbOnline.CheckedChanged += rdbOnline_CheckedChanged;
             // 
-            // radioButton1
+            // rdbPrensencial
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new Font("Segoe UI", 11.25F);
-            radioButton1.Location = new Point(16, 31);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(93, 24);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Presencial";
-            radioButton1.UseVisualStyleBackColor = true;
+            rdbPrensencial.AutoSize = true;
+            rdbPrensencial.Font = new Font("Segoe UI", 11.25F);
+            rdbPrensencial.Location = new Point(16, 31);
+            rdbPrensencial.Name = "rdbPrensencial";
+            rdbPrensencial.Size = new Size(93, 24);
+            rdbPrensencial.TabIndex = 0;
+            rdbPrensencial.TabStop = true;
+            rdbPrensencial.Text = "Presencial";
+            rdbPrensencial.UseVisualStyleBackColor = true;
+            rdbPrensencial.CheckedChanged += rdbPrensencial_CheckedChanged;
             // 
             // label2
             // 
@@ -178,14 +180,15 @@
             label6.TabIndex = 10;
             label6.Text = "Deseja selecionar um Contato?";
             // 
-            // checkBox1
+            // chkContato
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(277, 164);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(15, 14);
-            checkBox1.TabIndex = 11;
-            checkBox1.UseVisualStyleBackColor = true;
+            chkContato.AutoSize = true;
+            chkContato.Location = new Point(277, 164);
+            chkContato.Name = "chkContato";
+            chkContato.Size = new Size(15, 14);
+            chkContato.TabIndex = 11;
+            chkContato.UseVisualStyleBackColor = true;
+            chkContato.CheckedChanged += chkContato_CheckedChanged;
             // 
             // label7
             // 
@@ -197,83 +200,86 @@
             label7.TabIndex = 12;
             label7.Text = "Contato:";
             // 
-            // button1
+            // btnGravar
             // 
-            button1.Font = new Font("Segoe UI", 11.25F);
-            button1.Location = new Point(330, 332);
-            button1.Name = "button1";
-            button1.Size = new Size(100, 37);
-            button1.TabIndex = 13;
-            button1.Text = "Gravar";
-            button1.UseVisualStyleBackColor = true;
+            btnGravar.Font = new Font("Segoe UI", 11.25F);
+            btnGravar.Location = new Point(330, 332);
+            btnGravar.Name = "btnGravar";
+            btnGravar.Size = new Size(100, 37);
+            btnGravar.TabIndex = 13;
+            btnGravar.Text = "Gravar";
+            btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
-            // button2
+            // btnCancelar
             // 
-            button2.Font = new Font("Segoe UI", 11.25F);
-            button2.Location = new Point(436, 332);
-            button2.Name = "button2";
-            button2.Size = new Size(100, 37);
-            button2.TabIndex = 14;
-            button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = true;
+            btnCancelar.Font = new Font("Segoe UI", 11.25F);
+            btnCancelar.Location = new Point(436, 332);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(100, 37);
+            btnCancelar.TabIndex = 14;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dtpData
             // 
-            dateTimePicker1.CustomFormat = "";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(122, 83);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(97, 23);
-            dateTimePicker1.TabIndex = 16;
+            dtpData.CustomFormat = "";
+            dtpData.Format = DateTimePickerFormat.Custom;
+            dtpData.Location = new Point(122, 83);
+            dtpData.Name = "dtpData";
+            dtpData.Size = new Size(97, 23);
+            dtpData.TabIndex = 16;
             // 
-            // dateTimePicker2
+            // dtpHoraInicio
             // 
-            dateTimePicker2.CustomFormat = "hh:mm";
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(166, 116);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(105, 23);
-            dateTimePicker2.TabIndex = 17;
+            dtpHoraInicio.CustomFormat = "HH:mm";
+            dtpHoraInicio.Format = DateTimePickerFormat.Custom;
+            dtpHoraInicio.Location = new Point(166, 116);
+            dtpHoraInicio.Name = "dtpHoraInicio";
+            dtpHoraInicio.ShowUpDown = true;
+            dtpHoraInicio.Size = new Size(105, 23);
+            dtpHoraInicio.TabIndex = 17;
             // 
-            // dateTimePicker3
+            // dtpHoraFinal
             // 
-            dateTimePicker3.CustomFormat = "hh:mm";
-            dateTimePicker3.Format = DateTimePickerFormat.Custom;
-            dateTimePicker3.Location = new Point(436, 112);
-            dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(105, 23);
-            dateTimePicker3.TabIndex = 18;
+            dtpHoraFinal.CustomFormat = "HH:mm";
+            dtpHoraFinal.Format = DateTimePickerFormat.Custom;
+            dtpHoraFinal.Location = new Point(436, 112);
+            dtpHoraFinal.Name = "dtpHoraFinal";
+            dtpHoraFinal.ShowUpDown = true;
+            dtpHoraFinal.Size = new Size(105, 23);
+            dtpHoraFinal.TabIndex = 18;
             // 
-            // comboBox1
+            // cmbListaContato
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "a", "b", "c", "d" });
-            comboBox1.Location = new Point(411, 153);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(138, 23);
-            comboBox1.TabIndex = 19;
+            cmbListaContato.FormattingEnabled = true;
+            cmbListaContato.Items.AddRange(new object[] { "a", "b", "c", "d" });
+            cmbListaContato.Location = new Point(411, 153);
+            cmbListaContato.Name = "cmbListaContato";
+            cmbListaContato.Size = new Size(138, 23);
+            cmbListaContato.TabIndex = 19;
             // 
             // TelaCompromissoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(573, 381);
-            Controls.Add(comboBox1);
-            Controls.Add(dateTimePicker3);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(cmbListaContato);
+            Controls.Add(dtpHoraFinal);
+            Controls.Add(dtpHoraInicio);
+            Controls.Add(dtpData);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGravar);
             Controls.Add(label7);
-            Controls.Add(checkBox1);
+            Controls.Add(chkContato);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label2);
             Controls.Add(groupBox1);
-            Controls.Add(textBox3);
+            Controls.Add(txtId);
             Controls.Add(label3);
-            Controls.Add(textBox1);
+            Controls.Add(txtAssunto);
             Controls.Add(label1);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -289,25 +295,25 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox3;
+        private TextBox txtAssunto;
+        private TextBox txtId;
         private Label label3;
         private GroupBox groupBox1;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private TextBox txtLocalOnline;
+        private TextBox txtLocalPresencial;
+        private RadioButton rdbOnline;
+        private RadioButton rdbPrensencial;
         private Label label2;
         private Label label4;
         private Label label5;
         private Label label6;
-        private CheckBox checkBox1;
+        private CheckBox chkContato;
         private Label label7;
-        private Button button1;
-        private Button button2;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker3;
-        private ComboBox comboBox1;
+        private Button btnGravar;
+        private Button btnCancelar;
+        private DateTimePicker dtpData;
+        private DateTimePicker dtpHoraInicio;
+        private DateTimePicker dtpHoraFinal;
+        private ComboBox cmbListaContato;
     }
 }
