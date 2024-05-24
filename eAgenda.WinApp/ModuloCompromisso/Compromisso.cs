@@ -13,6 +13,20 @@ namespace eAgenda.WinApp.ModuloCompromisso
         public TimeSpan HorarioFinal {  get; set; }
         public Contato Contato { get; set; }
         public string Online { get; set; }
+        public TipoCompromissoEnum TipoCompromisso
+        {
+            get
+            {
+                TipoCompromissoEnum tipoSelecionado;
+
+                if(Local.Length > 0)
+                    tipoSelecionado = TipoCompromissoEnum.Presencial;
+                else
+                    tipoSelecionado = TipoCompromissoEnum.Online;
+
+                return tipoSelecionado;
+            }
+        }
 
 
 
@@ -72,9 +86,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
                 $"Local: {Local}," +
                 $" Data: {DataCompromisso.ToShortDateString()}," +
                 $"Inico: {HorarioInicio.ToString(@"hh\:mm")}," +
-                $"HorarioFinal: {HorarioFinal.ToString(@"hh\:mm")}" +
-                $"Contato: {nomeContato}";
-                //$"Tipo: {TipoCompromisso.ToString()}";
+                $"HorarioFinal: {HorarioFinal.ToString(@"hh\:mm")}," +
+                $"Contato: {nomeContato}," +
+                $"Tipo: {TipoCompromisso.ToString()}";
         }
     }
 }
