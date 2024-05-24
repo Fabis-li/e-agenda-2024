@@ -28,8 +28,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
             }
         }
 
-
-
         public Compromisso(string assunto, string local, string online, DateTime dataCompromisso, TimeSpan horarioInicio, TimeSpan horarioFinal, Contato contato)
         {
             Assunto = assunto;
