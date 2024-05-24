@@ -56,6 +56,15 @@ namespace eAgenda.WinApp.ModuloCompromisso
             string online = txtLocalOnline.Text;
 
             compromisso = new Compromisso(assunto, local, online, data, horarioInicio, horarioFinal, contato);
+
+            List<string> erros = compromisso.Validar();
+
+            if(erros.Count > 0 )
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
         }
 
         private void chkContato_CheckedChanged(object sender, EventArgs e)

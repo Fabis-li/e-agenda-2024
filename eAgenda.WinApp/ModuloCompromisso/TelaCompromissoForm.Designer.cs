@@ -71,10 +71,12 @@
             // 
             // txtId
             // 
+            txtId.Enabled = false;
             txtId.Location = new Point(122, 27);
             txtId.Name = "txtId";
             txtId.Size = new Size(93, 23);
             txtId.TabIndex = 5;
+            txtId.Text = "0";
             // 
             // label3
             // 
@@ -202,6 +204,7 @@
             // 
             // btnGravar
             // 
+            btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 11.25F);
             btnGravar.Location = new Point(330, 332);
             btnGravar.Name = "btnGravar";
@@ -213,6 +216,7 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.DialogResult = DialogResult.OK;
             btnCancelar.Font = new Font("Segoe UI", 11.25F);
             btnCancelar.Location = new Point(436, 332);
             btnCancelar.Name = "btnCancelar";
@@ -281,9 +285,12 @@
             Controls.Add(label3);
             Controls.Add(txtAssunto);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaCompromissoForm";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Cadastro de Compromissos";
             Load += TelaCompromissoForm_Load;
             groupBox1.ResumeLayout(false);
