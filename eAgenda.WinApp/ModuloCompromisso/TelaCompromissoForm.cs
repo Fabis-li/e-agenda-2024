@@ -11,11 +11,27 @@ namespace eAgenda.WinApp.ModuloCompromisso
             {
                 txtId.Text = value.Id.ToString();
                 txtAssunto.Text = value.Assunto;
-                dtpData.DataContext = value.DataCompromisso;
-                dtpHoraInicio.DataContext = value.HorarioInicio;
-                dtpHoraFinal.DataContext = value.HorarioFinal;
+                dtpData.Value = value.DataCompromisso;
+                dtpHoraInicio.Value = value.DataCompromisso.Date + value.HorarioInicio;
+                dtpHoraFinal.Value = value.DataCompromisso.Date + value.HorarioFinal;
                 txtLocalOnline.Text = value.Local;
                 txtLocalPresencial.Text = value.Local;
+
+                chkContato.Checked = value.Contato != null;
+
+                cmbListaContato.Enabled = value.Contato != null;
+                cmbListaContato.SelectedItem = value.Contato;
+
+                if(value.TipoCompromisso == TipoCompromissoEnum.Presencial)
+                {
+                    rdbPrensencial.Checked = true;
+                    txtLocalPresencial.Text = value.Local;
+                }
+                else
+                {
+                    rdbOnline.Checked = true;
+                    txtLocalOnline.Text = value.Online;
+                }
 
             }
             get

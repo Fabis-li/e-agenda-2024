@@ -3,7 +3,7 @@ using eAgenda.WinApp.ModuloContato;
 
 namespace eAgenda.WinApp.ModuloCompromisso
 {
-    public class ControladorCompromisso : ControladorBase
+    public class ControladorCompromisso : ControladorBase, IControladorFiltravel
     {
         private RepositorioCompromisso repositorioCompromisso;
         private ListagemCompromissoControl listagemCompromisso;
@@ -15,7 +15,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         public override string ToolTipEditar { get { return "Editar um compromisso existente"; } }
 
-        public override string ToolTipExcluir { get { return "Excluir umm compromisso existente"; } }
+        public override string ToolTipExcluir { get { return "Excluir um compromisso existente"; } }
+
+        public string ToolTipFiltrar { get { return "Filtrar um comprommissos"; } }
 
         public ControladorCompromisso(RepositorioCompromisso repositorioCompromisso, RepositorioContato repositorioContato)
         {
@@ -105,5 +107,33 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             listagemCompromisso.AtualizarRegistros(compromissos);
         }
+
+        public void Filtrar()
+        {
+            FiltroCompromissoForm filtro = new FiltroCompromissoForm();
+
+            DialogResult resultado = filtro.ShowDialog();            
+
+            TipoFiltroCompromissoEnum filtroSelecionado = filtro.FiltroEscolhido;
+
+            List<Compromisso> compromissosSelecionados;
+
+            if (filtroSelecionado == TipoFiltroCompromissoEnum.Passados)
+                compromissosSelecionados = repositorioCompromisso.SelecionarCompromissoSPassados();
+
+            else if (filtroSelecionado == TipoFiltroCompromissoEnum.Futuro)
+                compromissosSelecionados = repositorioCompromisso.SelecionarCompromissoSFuturo();
+
+            else
+                compromissosSelecionados = repositorioCompromisso.SelecionarTodos();
+
+            listagemCompromisso.AtualizarRegistros(compromissosSelecionados);
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {compromissosSelecionados.Count} registro...");
+        }
+
+       
+
+       
     }
 }
