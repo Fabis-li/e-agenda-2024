@@ -47,9 +47,24 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         public override void Editar()
         {
-           TelaCompromissoForm telaCompromisso = new TelaCompromissoForm();
+            TelaCompromissoForm telaCompromisso = new TelaCompromissoForm();
+
+            List<Contato> contatoCadastrados = repositorioContato.SelecionarTodos();
+
+            telaCompromisso.carregarContatos(contatoCadastrados);
 
             Compromisso compromissoSelecionado = listagemCompromisso.ObterRegistradoSelecionado();
+
+            if (compromissoSelecionado == null)
+            {
+                MessageBox.Show(
+                    "Não é possivel realiza esta ação sem um registro selecionado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
 
             telaCompromisso.Compromisso = compromissoSelecionado;
 
@@ -72,6 +87,17 @@ namespace eAgenda.WinApp.ModuloCompromisso
         public override void Excluir()
         {
             Compromisso compromissoSelecionado = listagemCompromisso.ObterRegistradoSelecionado();
+
+            if (compromissoSelecionado == null)
+            {
+                MessageBox.Show(
+                    "Não é possivel realiza esta ação sem um registro selecionado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
 
             DialogResult resposta = MessageBox.Show(
                 $"Você deseja realmente excluir o registro \"{compromissoSelecionado.Assunto}\"?",
