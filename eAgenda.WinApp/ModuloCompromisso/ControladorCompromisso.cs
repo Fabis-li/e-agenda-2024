@@ -150,8 +150,15 @@ namespace eAgenda.WinApp.ModuloCompromisso
             else if (filtroSelecionado == TipoFiltroCompromissoEnum.Futuro)
                 compromissosSelecionados = repositorioCompromisso.SelecionarCompromissoSFuturo();
 
+            else if (filtroSelecionado == TipoFiltroCompromissoEnum.Periodo)
+            {
+                DateTime dataInicio = filtro.InicioPeriodo;
+                DateTime dataTermino = filtro.TerminoPeriodo;
+
+                compromissosSelecionados = repositorioCompromisso.SelecionarCompromissosPorPeriodo(dataInicio, dataTermino);
+            }
             else
-                compromissosSelecionados = repositorioCompromisso.SelecionarTodos();
+                compromissosSelecionados = repositorioCompromisso.SelecionarTodos();               
 
             listagemCompromisso.AtualizarRegistros(compromissosSelecionados);
 

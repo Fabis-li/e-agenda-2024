@@ -6,30 +6,22 @@ namespace eAgenda.WinApp.ModuloCompromisso
 {
     public class RepositorioCompromisso : RepositorioBase<Compromisso>
     {
+        public List<Compromisso> SelecionarCompromissosPorPeriodo(DateTime dataInicio, DateTime dataTermino)
+        {
+            return registros
+                .FindAll(c => c.DataCompromisso >= dataInicio && c.DataCompromisso <= dataTermino);
+        }
         public List<Compromisso> SelecionarCompromissoSFuturo()
         {
-            List<Compromisso> compromissosFuturos = new List<Compromisso>();
-
-            foreach (Compromisso compromisso in registros)
-            {
-                if(compromisso.DataCompromisso >= DateTime.Today)
-                    compromissosFuturos.Add(compromisso);
-            }
-
-            return compromissosFuturos;
+            return registros.FindAll(c => c.DataCompromisso >= DateTime.Today);
         }
 
         public List<Compromisso> SelecionarCompromissoSPassados()
-        {
-            List<Compromisso> compromissosPassados = new List<Compromisso>();
-
-            foreach (Compromisso compromisso in registros)
-            {
-                if (compromisso.DataCompromisso < DateTime.Today)
-                    compromissosPassados.Add(compromisso);
-            }
-
-            return compromissosPassados;
+        {            
+            return registros.FindAll(c => c.DataCompromisso < DateTime.Now);
         }
+
+
+        
     }
 }

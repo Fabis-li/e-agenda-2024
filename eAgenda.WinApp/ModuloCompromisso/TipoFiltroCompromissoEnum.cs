@@ -5,7 +5,8 @@ namespace eAgenda.WinApp.ModuloCompromisso
     {
         Todos,
         Passados,
-        Futuro
+        Futuro,
+        Periodo
     }
 
 }
