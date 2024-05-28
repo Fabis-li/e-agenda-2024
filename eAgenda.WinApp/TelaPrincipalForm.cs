@@ -24,6 +24,8 @@ namespace eAgenda.WinApp
             repositorioCompromisso = new RepositorioCompromisso();
 
             Instancia = this;
+
+            CadastrarRegistrosTeste();
         }
         public void AtualizarRodape(string texto)
         {
@@ -103,6 +105,33 @@ namespace eAgenda.WinApp
         {
             if(controlador is IControladorFiltravel controladorFiltravel)
                 controladorFiltravel.Filtrar();
+        }
+
+        private void CadastrarRegistrosTeste()
+        {
+            List<Contato> contatos = new List<Contato>()
+            {
+                new("Rogerio", "49 99833-2123", "rogerio@gmail.com", "Academia do Programador", "CEO"),
+                new("Marcelo", "49 98505-6251", "marcelo@gmail.com", "Academia do Programador", "Professor"),
+                new("Fabio", "49 98404-6020", "fabio@gmail.com", "Cronos Soluções de Informática", "Vendedor")
+            };
+
+            repositorioContato.CadastrarVarios(contatos);
+
+            DateTime data = DateTime.Today.AddDays(-3);
+            TimeSpan horaInicio = new TimeSpan(09, 00, 00);
+            TimeSpan horaTermino = new TimeSpan(10, 00, 00);
+
+            DateTime dataFuturo = DateTime.Today.AddDays(5);
+
+            List<Compromisso> compromissos = new List<Compromisso>()
+            {
+                new("Reunião", "", "www.discord.com", data, horaInicio, horaTermino, contatos.First()),
+                new("Lavar o Cachorro", "Casa", "", dataFuturo, new TimeSpan(10, 00, 00), new TimeSpan(10, 30, 00), null),
+                new("Criar scripts de automatização", "Casa", "", dataFuturo.AddDays(10), new TimeSpan(19, 00, 00), new TimeSpan(23, 59, 00), null)
+            };
+
+            repositorioCompromisso.CadastrarVarios(compromissos);
         }
     }
 }

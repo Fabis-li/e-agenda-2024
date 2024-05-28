@@ -1,4 +1,5 @@
 ﻿using eAgenda.ConsoleApp.Compartilhado;
+using eAgenda.WinApp.Compartilhado;
 
 namespace eAgenda.WinApp.ModuloContato
 {
@@ -54,7 +55,8 @@ namespace eAgenda.WinApp.ModuloContato
 
         public override string ToString()
         {
-            return $"Id: {Id}, Nome: {Nome}, Telefone: {Telefone}, Email: {Email} Empresa: {Empresa}, Cargo: {Cargo}";
+            return Nome.ToTitleCase();
+            //return $"Id: {Id}, Nome: {Nome}, Telefone: {Telefone}, Email: {Email} Empresa: {Empresa}, Cargo: {Cargo}";
         }
     }
 }

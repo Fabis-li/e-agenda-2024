@@ -6,7 +6,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
     public class ControladorCompromisso : ControladorBase, IControladorFiltravel
     {
         private RepositorioCompromisso repositorioCompromisso;
-        private ListagemCompromissoControl listagemCompromisso;
+        private TabelaCompromissoControl tabelaCompromisso;
         private RepositorioContato repositorioContato;
 
         public override string TipoCadastro { get { return "Compromissos"; } }
@@ -53,7 +53,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
             telaCompromisso.carregarContatos(contatoCadastrados);
 
-            Compromisso compromissoSelecionado = listagemCompromisso.ObterRegistradoSelecionado();
+            int idSelecionado = tabelaCompromisso.ObterRegistradoSelecionado();
+
+            Compromisso compromissoSelecionado = repositorioCompromisso.SelecionarPorId(idSelecionado);
 
             if (compromissoSelecionado == null)
             {
@@ -86,7 +88,9 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         public override void Excluir()
         {
-            Compromisso compromissoSelecionado = listagemCompromisso.ObterRegistradoSelecionado();
+            int idSelecionado = tabelaCompromisso.ObterRegistradoSelecionado();
+           
+            Compromisso compromissoSelecionado = repositorioCompromisso.SelecionarPorId(idSelecionado);
 
             if (compromissoSelecionado == null)
             {
@@ -120,18 +124,18 @@ namespace eAgenda.WinApp.ModuloCompromisso
 
         public override UserControl ObterListagem()
         {
-            if(listagemCompromisso == null)
-                listagemCompromisso = new ListagemCompromissoControl();
+            if(tabelaCompromisso == null)
+                tabelaCompromisso = new TabelaCompromissoControl();
 
             CarregarCompromissos();
 
-            return listagemCompromisso;
+            return tabelaCompromisso;
         }
         private void CarregarCompromissos()
         {
             List<Compromisso> compromissos = repositorioCompromisso.SelecionarTodos();
 
-            listagemCompromisso.AtualizarRegistros(compromissos);
+            tabelaCompromisso.AtualizarRegistros(compromissos);
         }
 
         public void Filtrar()
@@ -160,7 +164,7 @@ namespace eAgenda.WinApp.ModuloCompromisso
             else
                 compromissosSelecionados = repositorioCompromisso.SelecionarTodos();               
 
-            listagemCompromisso.AtualizarRegistros(compromissosSelecionados);
+            tabelaCompromisso.AtualizarRegistros(compromissosSelecionados);
 
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {compromissosSelecionados.Count} registro...");
         }
