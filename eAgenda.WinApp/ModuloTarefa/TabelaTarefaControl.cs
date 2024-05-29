@@ -1,6 +1,4 @@
-﻿using eAgenda.WinApp.Compartilhado;
-
-namespace eAgenda.WinApp.ModuloTarefa
+﻿namespace eAgenda.WinApp.ModuloTarefa
 {
     public partial class TabelaTarefaControl : UserControl
     {
@@ -8,40 +6,37 @@ namespace eAgenda.WinApp.ModuloTarefa
         {
             InitializeComponent();
 
-            grid.Columns.AddRange(ObterColunas());
-
-            grid.ConfigurarGridSomenteLeitura();
-            grid.ConfigurarGridZebrado();
+            ConfigurarColunas();
+            ConfigurarListView();
         }
 
         public void AtualizarRegistros(List<Tarefa> tarefas)
         {
-            grid.Rows.Clear();
+            listTarefas.Items.Clear();
 
-            foreach(Tarefa t in tarefas)
-            {
-                grid.Rows.Add(
-                    t.Id,
-                    t.Titulo,
-                    t.Prioridade,
-                    t.DataCriacao.ToShortDateString(),
-                    t.DataConclusao.ToShortDateString(),
-                    t.PercentualConclusao
-                    );
-            }
+            foreach (Tarefa t in tarefas)
+                listTarefas.Items.Add(t.Titulo);
         }
 
-        private DataGridViewColumn[] ObterColunas()
+        private void ConfigurarListView()
         {
-            return new DataGridViewColumn[]
+            listTarefas.MultiSelect = false;
+            listTarefas.FullRowSelect = true; //seleciona a linha inteira da tabela
+            listTarefas.GridLines = true; //exibe as linhas da tabela (grid)
+
+            listTarefas.View = View.Details;
+        }
+
+        private void ConfigurarColunas()
+        {
+            ColumnHeader[] colunas = new ColumnHeader[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Titulo", HeaderText = "Titulo" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataCriacao", HeaderText = "Data Criação" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataConclusao", HeaderText = "Data Conclusão" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "PercentualConcluido", HeaderText = "% Concluido" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Itens", HeaderText = "Descrição Itens" },
+                new ColumnHeader() {Text = "Id", Width = 80},
+                new ColumnHeader() {Text = "Título", Width = 200},
+                new ColumnHeader() {Text = "Data de Criação", Width = 100},
             };
+
+            listTarefas.Columns.AddRange(colunas);
         }
     }
 }

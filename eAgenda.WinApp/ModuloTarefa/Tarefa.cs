@@ -7,20 +7,17 @@ namespace eAgenda.WinApp.ModuloTarefa
     public class Tarefa : EntidadeBase
     {
         public string Titulo { get; set; }
-        public string Prioridade { get; set; }
+        public TipoTarefaEnum Prioridade { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataConclusao { get; set; }
         public decimal PercentualConclusao { get; set; }
         public string Itens {  get; set; }
 
-        public Tarefa(string titulo, string prioridade, DateTime dataCriacao, DateTime dataConclusao, decimal percentualConclusao, string itens)
+        public Tarefa(string titulo, TipoTarefaEnum prioridade)
         {
             Titulo = titulo;
             Prioridade = prioridade;
-            DataCriacao = dataCriacao;
-            DataConclusao = dataConclusao;
-            PercentualConclusao = percentualConclusao;
-            Itens = itens;
+            DataCriacao = DateTime.Now;            
         }
 
         public override List<string> Validar()

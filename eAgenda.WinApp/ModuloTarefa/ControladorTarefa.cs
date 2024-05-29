@@ -5,13 +5,9 @@ namespace eAgenda.WinApp.ModuloTarefa
     public class ControladorTarefa : ControladorBase
     {
         
-        private TabelaTarefaControl tabelaTarefa;
+        private TabelaTarefaControl listTarefa;
 
         private RepositorioTarefa repositorioTarefa;
-        public ControladorTarefa(RepositorioTarefa repositorio)
-        {
-            repositorioTarefa = repositorio;
-        }
         public override string TipoCadastro { get { return "Tarefas"; } }
 
         public override string ToolTipAdicionar { get { return "Cadastrar uma nova tarefa"; } }
@@ -20,8 +16,12 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public override string ToolTipExcluir { get { return "Excluir uma tarefa existente"; } }
 
-        public override void Adicionar()
+        public ControladorTarefa(RepositorioTarefa repositorio)
         {
+            repositorioTarefa = repositorio;
+        }
+        public override void Adicionar()
+        {            
             TelaTarefaForm telaTarefa = new TelaTarefaForm();            
 
             DialogResult resultado = telaTarefa.ShowDialog();
@@ -53,17 +53,17 @@ namespace eAgenda.WinApp.ModuloTarefa
         {
             List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos();
 
-            tabelaTarefa.AtualizarRegistros(tarefas);
+            listTarefa.AtualizarRegistros(tarefas);
         }
 
         public override UserControl ObterListagem()
         {
-            if(tabelaTarefa == null)
-                tabelaTarefa = new TabelaTarefaControl();
+            if(listTarefa == null)
+                listTarefa = new TabelaTarefaControl();
 
             CarregarTarefas();
 
-            return tabelaTarefa;
+            return listTarefa;
         }
 
     }

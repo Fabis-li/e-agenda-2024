@@ -13,6 +13,7 @@ namespace eAgenda.WinApp
         RepositorioContato repositorioContato;
         RepositorioCompromisso repositorioCompromisso;
         RepositorioTarefa repositorioTarefa;
+
         public static TelaPrincipalForm Instancia { get; private set; }
 
         public TelaPrincipalForm()
@@ -49,6 +50,7 @@ namespace eAgenda.WinApp
         private void tarefasMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorTarefa(repositorioTarefa);
+
             ConfigurarTelaPrincipal(controlador);
         }
 
@@ -133,6 +135,16 @@ namespace eAgenda.WinApp
             };
 
             repositorioCompromisso.CadastrarVarios(compromissos);
+
+            List<Tarefa> tarefas = new List<Tarefa>()
+            {
+                new Tarefa("Testar código da aula", TipoTarefaEnum.Alta),
+                new Tarefa("Estudar para a prova", TipoTarefaEnum.Normal),
+                new Tarefa("Fazer o desafio", TipoTarefaEnum.Baixa)
+
+            };
+
+            repositorioTarefa.CadastrarVarios(tarefas);
         }
 
     }
