@@ -25,13 +25,7 @@ namespace eAgenda.WinApp.ModuloTarefa
             List<string> erros = new List<string>();
 
             if (string.IsNullOrEmpty(Titulo.Trim()))
-                erros.Add("O campo \"titulo\" é obrigatório");
-
-            if (DataCriacao < DateTime.Now)
-                erros.Add("O campo \" data\"não pode ser menor doque dia atual");
-
-            if (DataConclusao < DataCriacao)
-                erros.Add("O campo \"conclusão\" não pode ser menor que iniciar");           
+                erros.Add("O campo \"titulo\" é obrigatório");                       
 
             return erros;
         }

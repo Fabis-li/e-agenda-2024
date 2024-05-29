@@ -13,9 +13,29 @@
         public void AtualizarRegistros(List<Tarefa> tarefas)
         {
             listTarefas.Items.Clear();
+            listTarefas.Groups.Clear();//limpando grupo
 
-            foreach (Tarefa t in tarefas)
-                listTarefas.Items.Add(t.Titulo);
+             var tarefasAgrupadas = tarefas.GroupBy(t => t.Prioridade);//agrupando por Prioridade
+
+            foreach(var grupo in tarefasAgrupadas)
+            {
+                ListViewGroup listViewGroup =
+                    new ListViewGroup($"Prioridade {grupo.Key}", HorizontalAlignment.Left);
+
+                listTarefas.Groups.Add(listViewGroup);
+
+                foreach (Tarefa t in grupo)
+                {
+                    ListViewItem item = new ListViewItem(t.Id.ToString());
+
+                    item.SubItems.Add(t.Titulo);
+                    item.SubItems.Add(t.DataCriacao.ToShortDateString());
+
+                    item.Group = listViewGroup;
+
+                    listTarefas.Items.Add(item);
+                }
+            }              
         }
 
         private void ConfigurarListView()

@@ -3,7 +3,7 @@
     public partial class TelaTarefaForm : Form
     {
         private Tarefa tarefa;
-        public Tarefa Tarefa 
+        public Tarefa Tarefa
         {
             get
             {
@@ -14,11 +14,36 @@
         public TelaTarefaForm()
         {
             InitializeComponent();
+
+            CarregarPrioridades();
         }
 
-        private void TelaTarefaForm_Load(object sender, EventArgs e)
+        private void btnGravar_Click(object sender, EventArgs e)
         {
+            string titulo = txtTitulo.Text;
+            TipoTarefaEnum prioridade = (TipoTarefaEnum)cmbPrioridades.SelectedItem;
 
+            tarefa = new Tarefa(titulo, prioridade);
+
+            List<string> erros = tarefa.Validar();
+
+            if(erros.Count > 0 )
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+                DialogResult = DialogResult.None;
+            }
         }
+
+        private void CarregarPrioridades()
+        {
+            Array valoresEnum = Enum.GetValues(typeof(TipoTarefaEnum));
+
+            foreach (var valor in valoresEnum)
+                cmbPrioridades.Items.Add(valor);
+
+            cmbPrioridades.SelectedItem = TipoTarefaEnum.Baixa;
+        }       
+
+       
     }
 }

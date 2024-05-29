@@ -28,29 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtNome = new TextBox();
+            txtTitulo = new TextBox();
             label2 = new Label();
             txtId = new TextBox();
             label1 = new Label();
-            dtpData = new DateTimePicker();
             label3 = new Label();
-            dateTimePicker1 = new DateTimePicker();
             label4 = new Label();
-            textBox1 = new TextBox();
-            label5 = new Label();
             btnGravar = new Button();
             btnCancelar = new Button();
-            button1 = new Button();
-            listBox1 = new ListBox();
+            dateTimePicker1 = new DateTimePicker();
+            dtpData = new DateTimePicker();
+            label5 = new Label();
+            cmbPrioridades = new ComboBox();
             SuspendLayout();
             // 
-            // txtNome
+            // txtTitulo
             // 
-            txtNome.Font = new Font("Segoe UI", 11.25F);
-            txtNome.Location = new Point(133, 63);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(344, 27);
-            txtNome.TabIndex = 7;
+            txtTitulo.Font = new Font("Segoe UI", 11.25F);
+            txtTitulo.Location = new Point(133, 63);
+            txtTitulo.Name = "txtTitulo";
+            txtTitulo.Size = new Size(344, 27);
+            txtTitulo.TabIndex = 7;
             // 
             // label2
             // 
@@ -82,61 +80,25 @@
             label1.TabIndex = 4;
             label1.Text = "Id:";
             // 
-            // dtpData
-            // 
-            dtpData.CustomFormat = "";
-            dtpData.Format = DateTimePickerFormat.Custom;
-            dtpData.Location = new Point(133, 101);
-            dtpData.Name = "dtpData";
-            dtpData.Size = new Size(97, 23);
-            dtpData.TabIndex = 18;
-            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F);
-            label3.Location = new Point(79, 103);
+            label3.Location = new Point(79, 189);
             label3.Name = "label3";
             label3.Size = new Size(48, 20);
             label3.TabIndex = 17;
             label3.Text = "Inicio:";
             // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.CustomFormat = "";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(356, 101);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(97, 23);
-            dateTimePicker1.TabIndex = 20;
-            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 11.25F);
-            label4.Location = new Point(284, 103);
+            label4.Location = new Point(284, 189);
             label4.Name = "label4";
             label4.Size = new Size(66, 20);
             label4.TabIndex = 19;
             label4.Text = "Termino:";
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 11.25F);
-            textBox1.Location = new Point(133, 148);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(300, 27);
-            textBox1.TabIndex = 22;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 11.25F);
-            label5.Location = new Point(50, 151);
-            label5.Name = "label5";
-            label5.Size = new Size(77, 20);
-            label5.TabIndex = 21;
-            label5.Text = "Descrição:";
             // 
             // btnGravar
             // 
@@ -148,6 +110,7 @@
             btnGravar.TabIndex = 23;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
             // btnCancelar
             // 
@@ -160,40 +123,56 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // dateTimePicker1
             // 
-            button1.Location = new Point(439, 147);
-            button1.Name = "button1";
-            button1.Size = new Size(56, 28);
-            button1.TabIndex = 26;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            dateTimePicker1.CustomFormat = "";
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.Location = new Point(356, 187);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(97, 23);
+            dateTimePicker1.TabIndex = 20;
             // 
-            // listBox1
+            // dtpData
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(36, 215);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(441, 94);
-            listBox1.TabIndex = 27;
+            dtpData.CustomFormat = "";
+            dtpData.Format = DateTimePickerFormat.Custom;
+            dtpData.Location = new Point(133, 187);
+            dtpData.Name = "dtpData";
+            dtpData.Size = new Size(97, 23);
+            dtpData.TabIndex = 18;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 11.25F);
+            label5.Location = new Point(46, 102);
+            label5.Name = "label5";
+            label5.Size = new Size(81, 20);
+            label5.TabIndex = 25;
+            label5.Text = "Prioridade:";
+            // 
+            // cmbPrioridades
+            // 
+            cmbPrioridades.FormattingEnabled = true;
+            cmbPrioridades.Location = new Point(133, 103);
+            cmbPrioridades.Name = "cmbPrioridades";
+            cmbPrioridades.Size = new Size(144, 23);
+            cmbPrioridades.TabIndex = 26;
             // 
             // TelaTarefaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(507, 377);
-            Controls.Add(listBox1);
-            Controls.Add(button1);
+            Controls.Add(cmbPrioridades);
+            Controls.Add(label5);
             Controls.Add(btnGravar);
             Controls.Add(btnCancelar);
-            Controls.Add(textBox1);
-            Controls.Add(label5);
             Controls.Add(dateTimePicker1);
             Controls.Add(label4);
             Controls.Add(dtpData);
             Controls.Add(label3);
-            Controls.Add(txtNome);
+            Controls.Add(txtTitulo);
             Controls.Add(label2);
             Controls.Add(txtId);
             Controls.Add(label1);
@@ -202,27 +181,24 @@
             MinimizeBox = false;
             Name = "TelaTarefaForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = " Cadastro de Tarefa";
-            Load += TelaTarefaForm_Load;
+            Text = " Cadastro de Tarefa";            
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox txtNome;
+        private TextBox txtTitulo;
         private Label label2;
         private TextBox txtId;
         private Label label1;
-        private DateTimePicker dtpData;
         private Label label3;
-        private DateTimePicker dateTimePicker1;
         private Label label4;
-        private TextBox textBox1;
-        private Label label5;
         private Button btnGravar;
         private Button btnCancelar;
-        private Button button1;
-        private ListBox listBox1;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpData;
+        private Label label5;
+        private ComboBox cmbPrioridades;
     }
 }
