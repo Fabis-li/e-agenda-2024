@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace eAgenda.WinApp.ModuloTarefa
+﻿namespace eAgenda.WinApp.ModuloTarefa
 {
     public partial class TelaTarefaForm : Form
     {
+        private Tarefa tarefa;
+        public Tarefa Tarefa 
+        {
+            get
+            {
+                return tarefa;
+            }
+        }
+
         public TelaTarefaForm()
         {
             InitializeComponent();

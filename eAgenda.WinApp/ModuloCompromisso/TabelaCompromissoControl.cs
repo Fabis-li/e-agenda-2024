@@ -1,6 +1,5 @@
 ﻿
 using eAgenda.WinApp.Compartilhado;
-using eAgenda.WinApp.ModuloContato;
 
 namespace eAgenda.WinApp.ModuloCompromisso
 {
@@ -31,7 +30,6 @@ namespace eAgenda.WinApp.ModuloCompromisso
                     c.HorarioFinal.ToString(@"hh\:mm"),
                     c.Contato);
             }
-
         }
 
         public int ObterRegistroSelecionado()

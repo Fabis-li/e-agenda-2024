@@ -1,6 +1,7 @@
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
+using eAgenda.WinApp.ModuloTarefa;
 
 namespace eAgenda.WinApp
 {
@@ -11,9 +12,8 @@ namespace eAgenda.WinApp
 
         RepositorioContato repositorioContato;
         RepositorioCompromisso repositorioCompromisso;
+        RepositorioTarefa repositorioTarefa;
         public static TelaPrincipalForm Instancia { get; private set; }
-
-
 
         public TelaPrincipalForm()
         {
@@ -22,6 +22,7 @@ namespace eAgenda.WinApp
 
             repositorioContato = new RepositorioContato();
             repositorioCompromisso = new RepositorioCompromisso();
+            repositorioTarefa = new RepositorioTarefa();
 
             Instancia = this;
 
@@ -42,6 +43,12 @@ namespace eAgenda.WinApp
         {
             controlador = new ControladorCompromisso(repositorioCompromisso, repositorioContato);
 
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void tarefasMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorTarefa(repositorioTarefa);
             ConfigurarTelaPrincipal(controlador);
         }
 
@@ -93,17 +100,11 @@ namespace eAgenda.WinApp
 
             pnlRegistros.Controls.Clear();
             pnlRegistros.Controls.Add(listagemContato);
-        }
-
-        private void lblTipoCadastro_Click(object sender, EventArgs e)
-        {
-           
-            
-        }
+        }      
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            if(controlador is IControladorFiltravel controladorFiltravel)
+            if (controlador is IControladorFiltravel controladorFiltravel)
                 controladorFiltravel.Filtrar();
         }
 
@@ -133,5 +134,6 @@ namespace eAgenda.WinApp
 
             repositorioCompromisso.CadastrarVarios(compromissos);
         }
+
     }
 }
