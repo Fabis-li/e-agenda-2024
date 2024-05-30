@@ -8,16 +8,45 @@ namespace eAgenda.WinApp.ModuloTarefa
     {
         public string Titulo { get; set; }
         public TipoTarefaEnum Prioridade { get; set; }
-        public DateTime DataCriacao { get; set; }
+        public DateTime DataCriacao { get; set; }     
         public DateTime DataConclusao { get; set; }
-        public decimal PercentualConclusao { get; set; }
-        public string Itens {  get; set; }
+        public List<ItemTarefa> Itens { get; set; }
+        public decimal PercentualConcluido
+        {
+            get
+            {
+                if(Itens.Count == 0) 
+                    return 0;
+
+                int qtdConcluidos = Itens.Count(i => i.Concluido);
+
+                decimal percentualBase = (qtdConcluidos / Itens.Count) * 100;
+
+                return Math.Round(percentualBase, 2);
+            }
+        }
 
         public Tarefa(string titulo, TipoTarefaEnum prioridade)
         {
             Titulo = titulo;
             Prioridade = prioridade;
-            DataCriacao = DateTime.Now;            
+            DataCriacao = DateTime.Now;
+            DataConclusao = DateTime.MinValue;
+            
+            Itens = new List<ItemTarefa>();
+        }
+
+        public bool AdicionarItem(ItemTarefa item)
+        {
+            if (Itens.Exists(i => i.Titulo == item.Titulo))
+                return false;
+
+            item.Tarefa = this;
+            Itens.Add(item);
+
+            DataConclusao = DateTime.MinValue;
+
+            return true;
         }
 
         public override List<string> Validar()
@@ -36,10 +65,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             Titulo = atualizada.Titulo;
             Prioridade = atualizada.Prioridade;
-            DataCriacao = atualizada.DataCriacao;
-            DataConclusao = atualizada.DataConclusao;
-            PercentualConclusao = atualizada.PercentualConclusao;
-            Itens = atualizada.Itens;
+            DataCriacao = atualizada.DataCriacao;           
         }
     }
 }

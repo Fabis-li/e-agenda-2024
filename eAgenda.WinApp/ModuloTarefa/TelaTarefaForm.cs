@@ -9,6 +9,12 @@
             {
                 return tarefa;
             }
+            set 
+            {
+                txtId.Text = value.Id.ToString();
+                txtTitulo.Text = value.Titulo;
+                cmbPrioridades.SelectedItem = value.Prioridade;
+            }
         }
 
         public TelaTarefaForm()
