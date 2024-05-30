@@ -20,9 +20,11 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public string ToolTipAdicionarItens { get { return "Adicionar um itens para uma tarefa"; } }
 
+        public string ToolTipConcluirItens { get { return "Concluir itens de uma tarefa"; } }
+
         public ControladorTarefa(RepositorioTarefa repositorio)
         {
-            repositorioTarefa = repositorio;
+            this.repositorioTarefa = repositorio;
         }
         public override void Adicionar()
         {            
@@ -143,6 +145,7 @@ namespace eAgenda.WinApp.ModuloTarefa
                 return;
 
             List<ItemTarefa> itens = tela.ItensAdicionados;
+
             repositorioTarefa.AdicionarItens(tarefaSelecionada, itens);
 
             CarregarTarefas();
@@ -167,7 +170,19 @@ namespace eAgenda.WinApp.ModuloTarefa
                 return;
             }
 
+            TelaAtualizacaoItemTarefa tela = new TelaAtualizacaoItemTarefa(tarefaSelecionada);
+            
+            DialogResult resultado = tela.ShowDialog();
 
+            if(resultado != DialogResult.OK)
+                return;
+
+            List<ItemTarefa> itensPendentes = tela.ItensPendentes;
+            List<ItemTarefa> itensConcluidos = tela.ItensConcluidos;
+
+            repositorioTarefa.AtualizarItens(tarefaSelecionada, itensPendentes, itensConcluidos);
+
+            CarregarTarefas();
         }
 
         private void CarregarTarefas()

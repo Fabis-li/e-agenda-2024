@@ -20,7 +20,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
                 int qtdConcluidos = Itens.Count(i => i.Concluido);
 
-                decimal percentualBase = (qtdConcluidos / Itens.Count) * 100;
+                decimal percentualBase = (qtdConcluidos / (decimal)Itens.Count) * 100;
 
                 return Math.Round(percentualBase, 2);
             }
@@ -49,6 +49,29 @@ namespace eAgenda.WinApp.ModuloTarefa
             return true;
         }
 
+        public void ConcluirItem(ItemTarefa item)
+        {
+            ItemTarefa itemTarefa = Itens.Find(i => i.Titulo == item.Titulo);
+
+            if (itemTarefa == null)
+                return;
+
+            itemTarefa.Concluir();
+
+            if (Itens.All(i => i.Concluido))
+                DataConclusao = DateTime.Now;
+        }
+
+        public void MarcarPendente(ItemTarefa item)
+        {
+            ItemTarefa itemTarefa = Itens.Find(i => i.Titulo == item.Titulo);
+
+            if(itemTarefa == null)
+                return;
+
+            itemTarefa.MarcarPendente();
+        }
+
         public override List<string> Validar()
         {
             List<string> erros = new List<string>();
@@ -65,7 +88,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             Titulo = atualizada.Titulo;
             Prioridade = atualizada.Prioridade;
-            DataCriacao = atualizada.DataCriacao;           
+                      
         }
     }
 }

@@ -83,6 +83,7 @@ namespace eAgenda.WinApp
 
             btnFiltrar.Enabled = controladorSelecionado is IControladorFiltravel;
             btnAdicionarItens.Enabled = controladorSelecionado is IControladorSubItens;
+            btnConcluirItens.Enabled = controladorSelecionado is IControladorSubItens;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -97,7 +98,11 @@ namespace eAgenda.WinApp
                 btnFiltrar.ToolTipText = controladorFiltravel.ToolTipFiltrar;
 
             if (controlador is IControladorSubItens controladorSubItens)
+            {
                 btnAdicionarItens.ToolTipText = controladorSubItens.ToolTipAdicionarItens;
+                btnConcluirItens.ToolTipText = controladorSubItens.ToolTipConcluirItens;
+            }
+
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
         {
@@ -117,6 +122,12 @@ namespace eAgenda.WinApp
         {
             if (controlador is IControladorSubItens controladorSubItens)
                 controladorSubItens.AdicionarItens();
+        }
+
+        private void btnConcluirItens_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorSubItens controladorSubItens)
+                controladorSubItens.AtualizarItens();
         }
         private void CadastrarRegistrosTeste()
         {
@@ -155,5 +166,6 @@ namespace eAgenda.WinApp
             repositorioTarefa.CadastrarVarios(tarefas);
         }
 
+       
     }
 }

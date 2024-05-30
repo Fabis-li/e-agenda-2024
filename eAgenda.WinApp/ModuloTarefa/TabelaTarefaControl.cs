@@ -1,4 +1,4 @@
-﻿namespace eAgenda.WinApp.ModuloTarefa
+﻿ namespace eAgenda.WinApp.ModuloTarefa
 {
     public partial class TabelaTarefaControl : UserControl
     {
@@ -15,9 +15,9 @@
             listTarefas.Items.Clear();
             listTarefas.Groups.Clear();//limpando grupo
 
-             var tarefasAgrupadas = tarefas.GroupBy(t => t.Prioridade);//agrupando por Prioridade
+            var tarefasAgrupadas = tarefas.GroupBy(t => t.Prioridade);//agrupando por Prioridade
 
-            foreach(var grupo in tarefasAgrupadas)
+            foreach (var grupo in tarefasAgrupadas)
             {
                 ListViewGroup listViewGroup =
                     new ListViewGroup($"Prioridade {grupo.Key}", HorizontalAlignment.Left);
@@ -33,13 +33,15 @@
 
                     item.SubItems.Add(t.Titulo);
                     item.SubItems.Add(t.DataCriacao.ToShortDateString());
+                    item.SubItems.Add(t.PercentualConcluido + "%");
 
                     item.Group = listViewGroup;
 
                     listTarefas.Items.Add(item);
                 }
-            }              
-        }
+            }
+            ConfigurarAparenciaColunas();
+        }       
 
         private void ConfigurarListView()
         {
@@ -64,12 +66,20 @@
         {
             ColumnHeader[] colunas = new ColumnHeader[]
             {
-                new ColumnHeader() {Text = "Id", Width = 80},
-                new ColumnHeader() {Text = "Título", Width = 200},
-                new ColumnHeader() {Text = "Data de Criação", Width = 100},
+                new ColumnHeader() {Text = "Id"},
+                new ColumnHeader() {Text = "Título" },
+                new ColumnHeader() {Text = "Data de Criação"},
+                new ColumnHeader() {Text = "% Concluído", TextAlign = HorizontalAlignment.Right},
             };
 
             listTarefas.Columns.AddRange(colunas);
+        }
+
+        private void ConfigurarAparenciaColunas()
+        {
+            listTarefas.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            listTarefas.Columns[0].Width = 80;// definindo o width como padrão para a primeira coluna
         }
     }
 }
