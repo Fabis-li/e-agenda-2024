@@ -30,5 +30,10 @@ namespace eAgenda.WinApp.ModuloTarefa
             Concluido = false;
         }
 
+        public override string ToString()
+        {
+            return $"{Titulo}";
+        }
+
     }
 }

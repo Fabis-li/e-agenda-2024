@@ -82,6 +82,7 @@ namespace eAgenda.WinApp
             btnExcluir.Enabled = controladorSelecionado is ControladorBase;
 
             btnFiltrar.Enabled = controladorSelecionado is IControladorFiltravel;
+            btnAdicionarItens.Enabled = controladorSelecionado is IControladorSubItens;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -94,6 +95,9 @@ namespace eAgenda.WinApp
 
             if (controladorSelecionado is IControladorFiltravel controladorFiltravel)
                 btnFiltrar.ToolTipText = controladorFiltravel.ToolTipFiltrar;
+
+            if (controlador is IControladorSubItens controladorSubItens)
+                btnAdicionarItens.ToolTipText = controladorSubItens.ToolTipAdicionarItens;
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
         {
@@ -102,14 +106,18 @@ namespace eAgenda.WinApp
 
             pnlRegistros.Controls.Clear();
             pnlRegistros.Controls.Add(listagemContato);
-        }      
+        }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             if (controlador is IControladorFiltravel controladorFiltravel)
                 controladorFiltravel.Filtrar();
         }
-
+        private void btnAdicionarItens_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorSubItens controladorSubItens)
+                controladorSubItens.AdicionarItens();
+        }
         private void CadastrarRegistrosTeste()
         {
             List<Contato> contatos = new List<Contato>()

@@ -1,9 +1,10 @@
 ﻿using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloContato;
+using System.Windows.Forms;
 
 namespace eAgenda.WinApp.ModuloTarefa
 {
-    public class ControladorTarefa : ControladorBase
+    public class ControladorTarefa : ControladorBase, IControladorSubItens
     {
         
         private TabelaTarefaControl listTarefa;
@@ -16,6 +17,8 @@ namespace eAgenda.WinApp.ModuloTarefa
         public override string ToolTipEditar { get { return "Editar uma tarefa existente"; } }
 
         public override string ToolTipExcluir { get { return "Excluir uma tarefa existente"; } }
+
+        public string ToolTipAdicionarItens { get { return "Adicionar um itens para uma tarefa"; } }
 
         public ControladorTarefa(RepositorioTarefa repositorio)
         {
@@ -114,6 +117,59 @@ namespace eAgenda.WinApp.ModuloTarefa
                 .Instancia
                 .AtualizarRodape($"O registro \"{tarefaSelecionada.Titulo}\" foi excluído com sucesso!");
         }
+
+        public void AdicionarItens()
+        {
+            int idSelecionado = listTarefa.ObterIdSelecionado();
+
+            Tarefa tarefaSelecionada = repositorioTarefa.SelecionarPorId(idSelecionado);
+
+            if (tarefaSelecionada == null)
+            {
+                MessageBox.Show(
+                    "Não é possivel realiza esta ação sem um registro selecionado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            TelaCadastroItemTarefa tela = new TelaCadastroItemTarefa(tarefaSelecionada);
+
+            DialogResult resulto = tela.ShowDialog();
+
+            if (resulto != DialogResult.OK)
+                return;
+
+            List<ItemTarefa> itens = tela.ItensAdicionados;
+            repositorioTarefa.AdicionarItens(tarefaSelecionada, itens);
+
+            CarregarTarefas();
+
+        }
+
+        public void AtualizarItens()
+        {
+            int idSelecionado = listTarefa.ObterIdSelecionado();
+
+            Tarefa tarefaSelecionada =
+                repositorioTarefa.SelecionarPorId(idSelecionado);
+
+            if(tarefaSelecionada == null)
+            {
+                MessageBox.Show(
+                    "Não é possível realizar esta ação sem um registro selecionado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+
+        }
+
         private void CarregarTarefas()
         {
             List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos();
@@ -131,5 +187,6 @@ namespace eAgenda.WinApp.ModuloTarefa
             return listTarefa;
         }
 
+        
     }
 }
