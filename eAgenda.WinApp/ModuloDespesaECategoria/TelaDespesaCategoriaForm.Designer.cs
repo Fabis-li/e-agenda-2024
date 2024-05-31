@@ -1,6 +1,6 @@
-﻿namespace eAgenda.WinApp.ModuloTarefa
+﻿namespace eAgenda.WinApp.ModuloDespesaECategoria
 {
-    partial class TelaTarefaForm
+    partial class TelaDespesaCategoriaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,127 +28,103 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtTitulo = new TextBox();
+            txtCategoria = new TextBox();
             label2 = new Label();
             txtId = new TextBox();
             label1 = new Label();
             btnGravar = new Button();
             btnCancelar = new Button();
-            label5 = new Label();
-            cmbPrioridades = new ComboBox();
             SuspendLayout();
             // 
-            // txtTitulo
+            // txtCategoria
             // 
-            txtTitulo.Font = new Font("Segoe UI", 11.25F);
-            txtTitulo.Location = new Point(133, 63);
-            txtTitulo.Name = "txtTitulo";
-            txtTitulo.Size = new Size(344, 27);
-            txtTitulo.TabIndex = 7;
+            txtCategoria.Font = new Font("Segoe UI", 11.25F);
+            txtCategoria.Location = new Point(97, 53);
+            txtCategoria.Name = "txtCategoria";
+            txtCategoria.Size = new Size(225, 27);
+            txtCategoria.TabIndex = 11;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11.25F);
-            label2.Location = new Point(12, 66);
+            label2.Location = new Point(14, 56);
             label2.Name = "label2";
-            label2.Size = new Size(115, 20);
-            label2.TabIndex = 6;
-            label2.Text = "Título da Tarefa:";
+            label2.Size = new Size(77, 20);
+            label2.TabIndex = 10;
+            label2.Text = "Categoria:";
             // 
             // txtId
             // 
             txtId.Enabled = false;
             txtId.Font = new Font("Segoe UI", 11.25F);
-            txtId.Location = new Point(133, 30);
+            txtId.Location = new Point(97, 20);
             txtId.Name = "txtId";
             txtId.Size = new Size(100, 27);
-            txtId.TabIndex = 5;
+            txtId.TabIndex = 9;
             txtId.Text = "0";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F);
-            label1.Location = new Point(102, 33);
+            label1.Location = new Point(66, 23);
             label1.Name = "label1";
             label1.Size = new Size(25, 20);
-            label1.TabIndex = 4;
+            label1.TabIndex = 8;
             label1.Text = "Id:";
             // 
             // btnGravar
             // 
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 11.25F);
-            btnGravar.Location = new Point(271, 153);
+            btnGravar.Location = new Point(97, 109);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(100, 37);
-            btnGravar.TabIndex = 23;
+            btnGravar.TabIndex = 25;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
-            btnGravar.Click += btnGravar_Click;
             // 
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 11.25F);
-            btnCancelar.Location = new Point(377, 153);
+            btnCancelar.Location = new Point(203, 109);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(100, 37);
-            btnCancelar.TabIndex = 24;
+            btnCancelar.TabIndex = 26;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // TelaDespesaCategoriaForm
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 11.25F);
-            label5.Location = new Point(46, 102);
-            label5.Name = "label5";
-            label5.Size = new Size(81, 20);
-            label5.TabIndex = 25;
-            label5.Text = "Prioridade:";
-            // 
-            // cmbPrioridades
-            // 
-            cmbPrioridades.FormattingEnabled = true;
-            cmbPrioridades.Location = new Point(133, 103);
-            cmbPrioridades.Name = "cmbPrioridades";
-            cmbPrioridades.Size = new Size(144, 23);
-            cmbPrioridades.TabIndex = 26;
-            // 
-            // TelaTarefaForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(507, 202);
-            Controls.Add(cmbPrioridades);
-            Controls.Add(label5);
+            ClientSize = new Size(347, 164);
             Controls.Add(btnGravar);
             Controls.Add(btnCancelar);
-            Controls.Add(txtTitulo);
+            Controls.Add(txtCategoria);
             Controls.Add(label2);
             Controls.Add(txtId);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "TelaTarefaForm";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = " Cadastro de Tarefa";
+            Name = "TelaDespesaCategoriaForm";
+            ShowIcon = false;
+            Text = "Tela de Cadastro de Categoria para Despesas";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox txtTitulo;
+        private TextBox txtCategoria;
         private Label label2;
         private TextBox txtId;
         private Label label1;
         private Button btnGravar;
         private Button btnCancelar;
-        private Label label5;
-        private ComboBox cmbPrioridades;
     }
 }

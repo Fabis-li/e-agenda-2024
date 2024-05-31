@@ -1,6 +1,4 @@
 ﻿using eAgenda.ConsoleApp.Compartilhado;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace eAgenda.WinApp.ModuloTarefa
 {
