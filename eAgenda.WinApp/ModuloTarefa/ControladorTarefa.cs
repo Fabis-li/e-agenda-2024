@@ -28,7 +28,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         }
         public override void Adicionar()
         {            
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();            
+            TelaDespesaCategoriaForm telaTarefa = new TelaDespesaCategoriaForm();            
 
             DialogResult resultado = telaTarefa.ShowDialog();
 
@@ -48,7 +48,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public override void Editar()
         {
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+            TelaDespesaCategoriaForm telaTarefa = new TelaDespesaCategoriaForm();
 
             int idSelecionado = listTarefas.ObterIdSelecionado();
 

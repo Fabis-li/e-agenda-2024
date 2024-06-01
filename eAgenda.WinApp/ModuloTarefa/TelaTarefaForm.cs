@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.WinApp.ModuloTarefa
 {
-    public partial class TelaTarefaForm : Form
+    public partial class TelaDespesaCategoriaForm : Form
     {
         private Tarefa tarefa;
         public Tarefa Tarefa
@@ -17,7 +17,7 @@
             }
         }
 
-        public TelaTarefaForm()
+        public TelaDespesaCategoriaForm()
         {
             InitializeComponent();
 

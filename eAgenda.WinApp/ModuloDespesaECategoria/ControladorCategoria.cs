@@ -1,5 +1,4 @@
 ﻿using eAgenda.WinApp.Compartilhado;
-using eAgenda.WinApp.ModuloContato;
 using eAgenda.WinApp.ModuloTarefa;
 
 namespace eAgenda.WinApp.ModuloDespesaECategoria
@@ -45,7 +44,39 @@ namespace eAgenda.WinApp.ModuloDespesaECategoria
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            TelaDespesaCategoriaForm telaCategoria = new TelaDespesaCategoriaForm();
+
+            int idSelecionado = listCategoria.ObterIdSelecionado();
+
+            Categoria categoriaSelecionada = repositorioCategoria.SelecionarPorId(idSelecionado);
+
+            if (categoriaSelecionada == null)
+            {
+                MessageBox.Show(
+                    "Não é possivel realiza esta ação sem um registro selecionado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            telaCategoria.Categoria = categoriaSelecionada;
+
+            DialogResult resultado = telaCategoria.ShowDialog();
+
+            if (resultado != DialogResult.OK)
+                return;
+
+            Categoria categoriaEditada = telaCategoria.Categoria;
+
+            repositorioCategoria.Editar(categoriaSelecionada.Id, categoriaEditada);
+
+            CarregarCategorias();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{categoriaEditada.NomeCategoria}\" foi editado com sucesso!");
         }
 
         public override void Excluir()

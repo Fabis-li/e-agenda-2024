@@ -1,6 +1,6 @@
 ﻿namespace eAgenda.WinApp.ModuloTarefa
 {
-    partial class TelaTarefaForm
+    partial class TelaDespesaCategoriaForm
     {
         /// <summary>
         /// Required designer variable.
