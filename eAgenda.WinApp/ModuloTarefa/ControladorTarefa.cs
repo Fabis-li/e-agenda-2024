@@ -7,7 +7,7 @@ namespace eAgenda.WinApp.ModuloTarefa
     public class ControladorTarefa : ControladorBase, IControladorSubItens
     {
         
-        private TabelaTarefaControl listTarefa;
+        private TabelaTarefaControl listTarefas;
 
         private RepositorioTarefa repositorioTarefa;
         public override string TipoCadastro { get { return "Tarefas"; } }
@@ -32,7 +32,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
             DialogResult resultado = telaTarefa.ShowDialog();
 
-            if (resultado == DialogResult.OK)
+            if (resultado != DialogResult.OK)
                 return;
 
             Tarefa novaTarefa = telaTarefa.Tarefa;
@@ -50,7 +50,7 @@ namespace eAgenda.WinApp.ModuloTarefa
         {
             TelaTarefaForm telaTarefa = new TelaTarefaForm();
 
-            int idSelecionado = listTarefa.ObterIdSelecionado();
+            int idSelecionado = listTarefas.ObterIdSelecionado();
 
             Tarefa tarefaSelecionada = repositorioTarefa.SelecionarPorId(idSelecionado);
 
@@ -85,7 +85,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public override void Excluir()
         {
-            int idSelecionado = listTarefa.ObterIdSelecionado();
+            int idSelecionado = listTarefas.ObterIdSelecionado();
 
             Tarefa tarefaSelecionada = repositorioTarefa.SelecionarPorId(idSelecionado);
 
@@ -122,7 +122,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public void AdicionarItens()
         {
-            int idSelecionado = listTarefa.ObterIdSelecionado();
+            int idSelecionado = listTarefas.ObterIdSelecionado();
 
             Tarefa tarefaSelecionada = repositorioTarefa.SelecionarPorId(idSelecionado);
 
@@ -154,7 +154,7 @@ namespace eAgenda.WinApp.ModuloTarefa
 
         public void AtualizarItens()
         {
-            int idSelecionado = listTarefa.ObterIdSelecionado();
+            int idSelecionado = listTarefas.ObterIdSelecionado();
 
             Tarefa tarefaSelecionada =
                 repositorioTarefa.SelecionarPorId(idSelecionado);
@@ -189,17 +189,17 @@ namespace eAgenda.WinApp.ModuloTarefa
         {
             List<Tarefa> tarefas = repositorioTarefa.SelecionarTodos();
 
-            listTarefa.AtualizarRegistros(tarefas);
+            listTarefas.AtualizarRegistros(tarefas);
         }
 
         public override UserControl ObterListagem()
         {
-            if(listTarefa == null)
-                listTarefa = new TabelaTarefaControl();
+            if(listTarefas == null)
+                listTarefas = new TabelaTarefaControl();
 
             CarregarTarefas();
 
-            return listTarefa;
+            return listTarefas;
         }
 
         

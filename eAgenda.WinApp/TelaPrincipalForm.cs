@@ -1,18 +1,19 @@
 using eAgenda.WinApp.Compartilhado;
 using eAgenda.WinApp.ModuloCompromisso;
 using eAgenda.WinApp.ModuloContato;
+using eAgenda.WinApp.ModuloDespesaECategoria;
 using eAgenda.WinApp.ModuloTarefa;
 
 namespace eAgenda.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        ControladorBase controlador;
-        ControladorCompromisso controladorCompromisso;
+        ControladorBase controlador;        
 
         RepositorioContato repositorioContato;
         RepositorioCompromisso repositorioCompromisso;
         RepositorioTarefa repositorioTarefa;
+        RepositorioCategoria repositorioCategoria;       
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -24,6 +25,7 @@ namespace eAgenda.WinApp
             repositorioContato = new RepositorioContato();
             repositorioCompromisso = new RepositorioCompromisso();
             repositorioTarefa = new RepositorioTarefa();
+            repositorioCategoria = new RepositorioCategoria();
 
             Instancia = this;
 
@@ -50,6 +52,12 @@ namespace eAgenda.WinApp
         private void tarefasMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorTarefa(repositorioTarefa);
+
+            ConfigurarTelaPrincipal(controlador);
+        }
+        private void despesasECategoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorCategoria(repositorioCategoria);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -164,8 +172,16 @@ namespace eAgenda.WinApp
             };
 
             repositorioTarefa.CadastrarVarios(tarefas);
+
+            List<Categoria> categorias = new List<Categoria>()
+            {
+                new("Alimentação"),
+                new("Lazer"),
+                new("Transporte")
+            };
+
+            repositorioCategoria.CadastrarVarios(categorias);
         }
 
-       
     }
 }

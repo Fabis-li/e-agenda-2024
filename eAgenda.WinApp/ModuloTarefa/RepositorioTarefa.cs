@@ -9,8 +9,7 @@ namespace eAgenda.WinApp.ModuloTarefa
             foreach (ItemTarefa item in itens)
                 tarefaSelecionada.AdicionarItem(item);
         }
-
-        internal void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensPendentes, List<ItemTarefa> itensConcluidos)
+        public void AtualizarItens(Tarefa tarefaSelecionada, List<ItemTarefa> itensPendentes, List<ItemTarefa> itensConcluidos)
         {
             foreach (ItemTarefa i in itensPendentes)
                 tarefaSelecionada.MarcarPendente(i);

@@ -27,6 +27,7 @@
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string titulo = txtTitulo.Text;
+
             TipoTarefaEnum prioridade = (TipoTarefaEnum)cmbPrioridades.SelectedItem;
 
             tarefa = new Tarefa(titulo, prioridade);
