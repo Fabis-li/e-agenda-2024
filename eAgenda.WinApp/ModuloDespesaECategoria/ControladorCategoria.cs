@@ -81,7 +81,39 @@ namespace eAgenda.WinApp.ModuloDespesaECategoria
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            int idSelecionado = listCategoria.ObterIdSelecionado();
+
+            Categoria categoriaSelecionada = repositorioCategoria.SelecionarPorId(idSelecionado);
+
+            if (categoriaSelecionada == null)
+            {
+                MessageBox.Show(
+                    "Não é possivel realiza esta ação sem um registro selecionado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+
+            DialogResult resposta = MessageBox.Show(
+                $"Você deseja realmente excluir o registro \"{categoriaSelecionada.NomeCategoria}\"?",
+                "Confirmar Exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (resposta != DialogResult.Yes)
+                return;
+
+            repositorioCategoria.Excluir(categoriaSelecionada.Id);
+
+            CarregarCategorias();
+
+            TelaPrincipalForm
+                .Instancia
+                .AtualizarRodape($"O registro \"{categoriaSelecionada.NomeCategoria}\" foi excluído com sucesso!");
         }
 
         public override UserControl ObterListagem()
