@@ -75,7 +75,7 @@
             cmbItemTitulo.Location = new Point(78, 60);
             cmbItemTitulo.Name = "cmbItemTitulo";
             cmbItemTitulo.Size = new Size(231, 23);
-            cmbItemTitulo.TabIndex = 13;
+            cmbItemTitulo.TabIndex = 13;            
             // 
             // listItensTarefa
             // 

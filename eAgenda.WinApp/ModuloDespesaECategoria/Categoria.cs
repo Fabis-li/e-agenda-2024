@@ -4,11 +4,14 @@ namespace eAgenda.WinApp.ModuloDespesaECategoria
 {
     public class Categoria : EntidadeBase
     {
-        public string NomeCategoria { get; set; }
+        public string NomeCategoria { get; set; }  
+        public List<Despesa> Despesas { get; set; }
 
         public Categoria(string nomeCategoria)
         {
             NomeCategoria = nomeCategoria;
+
+            Despesas = new List<Despesa>();
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)

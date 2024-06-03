@@ -28,25 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblTarefaItem = new Label();
+            lblDespesa = new Label();
             btnGravar = new Button();
             btnCancelar = new Button();
             listDespesas = new ListBox();
-            cmbNomeDespesa = new ComboBox();
-            btnAdicionarItem = new Button();
+            btnAdicionarDespesa = new Button();
             lblItemTitulo = new Label();
             lblItemTarefa = new Label();
+            label1 = new Label();
+            cmbFormaPagamento = new ComboBox();
+            label2 = new Label();
+            cmbNomeDespesa = new ComboBox();
+            txtValorDespesa = new TextBox();
             SuspendLayout();
             // 
-            // lblTarefaItem
+            // lblDespesa
             // 
-            lblTarefaItem.AutoSize = true;
-            lblTarefaItem.Font = new Font("Segoe UI", 11.5F, FontStyle.Bold);
-            lblTarefaItem.Location = new Point(110, 10);
-            lblTarefaItem.Name = "lblTarefaItem";
-            lblTarefaItem.Size = new Size(100, 21);
-            lblTarefaItem.TabIndex = 35;
-            lblTarefaItem.Text = "[ Categoria]";
+            lblDespesa.AutoSize = true;
+            lblDespesa.Font = new Font("Segoe UI", 11.5F, FontStyle.Bold);
+            lblDespesa.Location = new Point(110, 10);
+            lblDespesa.Name = "lblDespesa";
+            lblDespesa.Size = new Size(100, 21);
+            lblDespesa.TabIndex = 35;
+            lblDespesa.Text = "[ Categoria]";
             // 
             // btnGravar
             // 
@@ -58,6 +62,7 @@
             btnGravar.TabIndex = 33;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
             // btnCancelar
             // 
@@ -75,28 +80,21 @@
             listDespesas.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listDespesas.FormattingEnabled = true;
             listDespesas.ItemHeight = 20;
-            listDespesas.Location = new Point(27, 110);
+            listDespesas.Location = new Point(27, 170);
             listDespesas.Name = "listDespesas";
-            listDespesas.Size = new Size(398, 184);
+            listDespesas.Size = new Size(398, 124);
             listDespesas.TabIndex = 32;
             // 
-            // cmbNomeDespesa
+            // btnAdicionarDespesa
             // 
-            cmbNomeDespesa.FormattingEnabled = true;
-            cmbNomeDespesa.Location = new Point(110, 49);
-            cmbNomeDespesa.Name = "cmbNomeDespesa";
-            cmbNomeDespesa.Size = new Size(231, 23);
-            cmbNomeDespesa.TabIndex = 31;
-            // 
-            // btnAdicionarItem
-            // 
-            btnAdicionarItem.BackColor = SystemColors.Control;
-            btnAdicionarItem.Location = new Point(347, 45);
-            btnAdicionarItem.Name = "btnAdicionarItem";
-            btnAdicionarItem.Size = new Size(79, 29);
-            btnAdicionarItem.TabIndex = 30;
-            btnAdicionarItem.Text = "Adicionar";
-            btnAdicionarItem.UseVisualStyleBackColor = false;
+            btnAdicionarDespesa.BackColor = SystemColors.Control;
+            btnAdicionarDespesa.Location = new Point(347, 45);
+            btnAdicionarDespesa.Name = "btnAdicionarDespesa";
+            btnAdicionarDespesa.Size = new Size(79, 100);
+            btnAdicionarDespesa.TabIndex = 30;
+            btnAdicionarDespesa.Text = "Adicionar";
+            btnAdicionarDespesa.UseVisualStyleBackColor = false;
+            btnAdicionarDespesa.Click += btnAdicionarDespesa_Click;
             // 
             // lblItemTitulo
             // 
@@ -118,17 +116,65 @@
             lblItemTarefa.TabIndex = 28;
             lblItemTarefa.Text = "Categoria:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 11.25F);
+            label1.Location = new Point(58, 87);
+            label1.Name = "label1";
+            label1.Size = new Size(46, 20);
+            label1.TabIndex = 36;
+            label1.Text = "Valor:";
+            // 
+            // cmbFormaPagamento
+            // 
+            cmbFormaPagamento.FormattingEnabled = true;
+            cmbFormaPagamento.Location = new Point(196, 122);
+            cmbFormaPagamento.Name = "cmbFormaPagamento";
+            cmbFormaPagamento.Size = new Size(145, 23);
+            cmbFormaPagamento.TabIndex = 39;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 11.25F);
+            label2.Location = new Point(36, 125);
+            label2.Name = "label2";
+            label2.Size = new Size(154, 20);
+            label2.TabIndex = 38;
+            label2.Text = "Forma de Pagamento:";
+            // 
+            // cmbNomeDespesa
+            // 
+            cmbNomeDespesa.FormattingEnabled = true;
+            cmbNomeDespesa.Location = new Point(110, 52);
+            cmbNomeDespesa.Name = "cmbNomeDespesa";
+            cmbNomeDespesa.Size = new Size(231, 23);
+            cmbNomeDespesa.TabIndex = 42;
+            // 
+            // txtValorDespesa
+            // 
+            txtValorDespesa.Font = new Font("Segoe UI", 11.25F);
+            txtValorDespesa.Location = new Point(110, 81);
+            txtValorDespesa.Name = "txtValorDespesa";
+            txtValorDespesa.Size = new Size(231, 27);
+            txtValorDespesa.TabIndex = 43;
+            // 
             // TelaCadastroDespesa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(437, 341);
-            Controls.Add(lblTarefaItem);
+            Controls.Add(txtValorDespesa);
+            Controls.Add(cmbNomeDespesa);
+            Controls.Add(cmbFormaPagamento);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(lblDespesa);
             Controls.Add(btnGravar);
             Controls.Add(btnCancelar);
             Controls.Add(listDespesas);
-            Controls.Add(cmbNomeDespesa);
-            Controls.Add(btnAdicionarItem);
+            Controls.Add(btnAdicionarDespesa);
             Controls.Add(lblItemTitulo);
             Controls.Add(lblItemTarefa);
             MaximizeBox = false;
@@ -142,13 +188,17 @@
 
         #endregion
 
-        private Label lblTarefaItem;
+        private Label lblDespesa;
         private Button btnGravar;
         private Button btnCancelar;
         private ListBox listDespesas;
-        private ComboBox cmbNomeDespesa;
-        private Button btnAdicionarItem;
+        private Button btnAdicionarDespesa;
         private Label lblItemTitulo;
         private Label lblItemTarefa;
+        private Label label1;
+        private ComboBox cmbFormaPagamento;
+        private Label label2;
+        private ComboBox cmbNomeDespesa;
+        private TextBox txtValorDespesa;
     }
 }

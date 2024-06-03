@@ -1,9 +1,8 @@
 ﻿using eAgenda.WinApp.Compartilhado;
-using eAgenda.WinApp.ModuloTarefa;
 
 namespace eAgenda.WinApp.ModuloDespesaECategoria
 {
-    public class ControladorCategoria : ControladorBase
+    public class ControladorCategoria : ControladorBase, IControladorDepesas
     {
         private TabelaCategoriaControl listCategoria;
 
@@ -15,6 +14,8 @@ namespace eAgenda.WinApp.ModuloDespesaECategoria
         public override string ToolTipEditar { get { return "Editar uma categoria existente"; } }
 
         public override string ToolTipExcluir { get { return "Excluir uma categoria existente"; } }
+
+        public string ToolTipAdicionarDespesas { get { return "Cadastrar uma nova despesa"; } }
 
         public ControladorCategoria(RepositorioCategoria repositorio)
         {
@@ -131,6 +132,44 @@ namespace eAgenda.WinApp.ModuloDespesaECategoria
             List<Categoria> categorias = repositorioCategoria.SelecionarTodos();
 
             listCategoria.AtualizarRegistros(categorias);
+        }
+
+        public void AdicionarDespesas()
+        {
+            int idSelecionado = listCategoria.ObterIdSelecionado();
+
+            Categoria categoriaSelecionada =
+                repositorioCategoria.SelecionarPorId(idSelecionado);
+
+            if (categoriaSelecionada == null)
+            {
+                MessageBox.Show(
+                    "Não é possível realizar esta ação sem um registro selecionado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            TelaCadastroDespesa tela = new TelaCadastroDespesa(categoriaSelecionada);
+
+            DialogResult resultado = tela.ShowDialog();
+
+            //if (resultado != DialogResult.OK)
+            //    return;
+
+            ////List<Despesa> itensPendentes = tela.ItensPendentes;
+            ////List<ItemTarefa> itensConcluidos = tela.ItensConcluidos;
+
+            //repositorioTarefa.AtualizarItens(tarefaSelecionada, itensPendentes, itensConcluidos);
+
+            //CarregarTarefas();
+        }
+
+        public void AtualizarDepesas()
+        {
+            throw new NotImplementedException();
         }
     }
 }

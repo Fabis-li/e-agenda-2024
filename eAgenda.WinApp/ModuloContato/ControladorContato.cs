@@ -18,7 +18,7 @@ namespace eAgenda.WinApp.ModuloContato
 
         public override string ToolTipEditar { get { return "Editar um contato existente"; } }
 
-        public override string ToolTipExcluir { get { return "Excluir um contato existente"; } }
+        public override string ToolTipExcluir { get { return "Excluir um contato existente"; } }       
 
         public override void Adicionar()
         {
@@ -131,5 +131,6 @@ namespace eAgenda.WinApp.ModuloContato
 
             return tabelaContato;
         }
+        
     }
 }

@@ -93,6 +93,11 @@ namespace eAgenda.WinApp
             btnAdicionarItens.Enabled = controladorSelecionado is IControladorSubItens;
             btnConcluirItens.Enabled = controladorSelecionado is IControladorSubItens;
 
+            btnAdicionarItens.Enabled = controladorSelecionado is IControladorDepesas;
+
+           
+
+
             ConfigurarToolTips(controladorSelecionado);
         }
 
@@ -110,6 +115,13 @@ namespace eAgenda.WinApp
                 btnAdicionarItens.ToolTipText = controladorSubItens.ToolTipAdicionarItens;
                 btnConcluirItens.ToolTipText = controladorSubItens.ToolTipConcluirItens;
             }
+            else if (controlador is IControladorDepesas controladorDepesas)
+            {
+                btnAdicionarItens.ToolTipText = controladorDepesas.ToolTipAdicionarDespesas;
+
+            }
+            
+               
 
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
@@ -130,13 +142,19 @@ namespace eAgenda.WinApp
         {
             if (controlador is IControladorSubItens controladorSubItens)
                 controladorSubItens.AdicionarItens();
+
+            if (controlador is IControladorDepesas controladorDespesas)
+                controladorDespesas.AdicionarDespesas();
         }
 
         private void btnConcluirItens_Click(object sender, EventArgs e)
         {
             if (controlador is IControladorSubItens controladorSubItens)
                 controladorSubItens.AtualizarItens();
+
         }
+
+
         private void CadastrarRegistrosTeste()
         {
             List<Contato> contatos = new List<Contato>()
